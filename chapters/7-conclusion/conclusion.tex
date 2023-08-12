@@ -1,0 +1,61 @@
+\documentclass[..]{subfiles}
+
+
+\begin{document}
+
+\chapter{Conclusion}\label{chap:conclusion}
+
+\section{General Conclusions}
+
+A simplified version of the model described in \cite{canetti2001universally} has been developed. This model is complex enough to support the description of the Bitcoin backbone protocol bounding resources and abstracting the communication layer while providing enough freedom to model other protocols. For instance if some of the condition of the communication layer or any of the random oracles of functionalities is changed the model can be adapted ans the protocol can be newly built on top of it.
+
+The guts of the Bitcoin protocol have been described and analyzed in a rigorous way. The Bitcoin protocol is parameterized too which in turn means that the protocol can be used as base to build applications on by instantiating the protocol parameters. The results obtained are very powerful and the assumptions needed to obtain them are not very strong which suggests the solutions built using the protocol may be very useful in a real world scenario.
+
+The problems solved are interesting in their own way. The problem of Maintaining a Public Ledger is very interesting because it allows the creation of transaction based applications. This protocol is parameterized too which makes it flexible allowing to instantiate the Bitcoin protocol as a particular case. The General Byzantines problem is also solved but the solutions given are not parameterized. Still they are interesting. The first one shows that Nakamoto didn't get it completely wright in his solution to the problem since \textit{validity} cannot be assured. Meanwhile the second one manages to achieved the deterministic bound $t < 1/3$. Another solution exists based on the Nakamoto solution to the Public Ledger problem. This solution is particularly interesting because it actually improves the bound of the deterministic solution to $t < 1/2$ which clear puts in perspective the power of the Blockchain technology. This solution is not shown because there was not enough time to write it down.
+
+All in all the work is complete and self contained and can be anyone with mathematical or computer science education which sets it apart from the papers and works used as a reference and makes it useful as an introduction to the Blockchain technology.
+
+
+\section{Objectives Analysis}
+
+Most of the objectives stated in Chapter \ref{chap:introduction} have been accomplished:
+
+\begin{centering}
+	\begin{longtable}{|m{0.25\textwidth}<{\centering}|m{0.20\textwidth}<{\centering}|m{0.45\textwidth}<{\centering}|}
+		\hline
+		\textbf{Objective} & \textbf{Level of Accomplishment} & \textbf{Comments}\\
+		\hline
+		Studying current state of the art works & 80\% & The final conception of the current state of the art is almost fully complete since, although not all texts have been read or studied their existence and contents have been noted.\\
+		\hline
+		Analyzing the most relevant current works on Blockchain topic from different standpoints & 70\% & Many articles related to the properties of other blockchain protocols have not being studied in detail.\\
+		\hline
+		Exploring the accepted definitions of the Blockchain concept and the consequences of such definitions in terms of models and protocols & 95\% & This objective has been almost fully completed. A deep understanding of the Blockchain concept and its consequences has been acquired as well as the protocols linked to them. Not all computational models are fully understood. \\
+		\hline
+		Searching for problems that can be solved using Blockchain properties & 75\% & In the current work two problems are solved using the described protocol. There surely are many more but there was not enough time to research more of them.\\
+		\hline
+		Defining in detail the computational model upon the protocol will be based & 95\% & Except some very specific details the computational model has been fully understood(although based on another model it is defined by the author which denotes enough knowledge to distinguish what is necessary and what not and to what extent.)\\
+		\hline
+		Describing the protocol that will use the Blockchain technology and will be used to solve the stated problems & 100\% & The protocol is perfectly described and much care has been put in making such description as comprehensive as possible.\\
+		\hline
+		Analyzing the vulnerabilities of the described protocol & 50\% & A more detailed analysis could have been made. For instance, the perpetrated security analysis is only based on the proved properties of the protocol. A specific study on possible attacks and their consequences is needed although there was not enough time to make it.\\
+		\hline
+		Detailing the problems that are going to be solved & 100\% & Solved problems are formally defined.\\
+		\hline
+		Illustrating the solutions given to the problems & 80\% & Solutions are defined at high level even though no important details are missed. An interesting solution for the General Byzantines problem is missing.\\
+		\hline
+		Implementing the protocol in a general purpose language & 0\% & There was not enough time to do any implementation.\\
+		\hline
+	\end{longtable}
+\end{centering}
+
+
+\section{Future Work}
+
+A similar analysis has to be made for the main Blockchain based protocols in order to provide a clear comparison of their characteristics and capabilities. Some of the most important of these protocols differ on the Bitcoin backbone protocol mainly in the PoW, like Ouroboros Proof of Stake or Chia Proof of Space. Some work has been done in this regard in \cite{ren2019analysis} and \cite{kiayias2020pos}. Also a deep analysis of the vulnerabilities of these protocols has to be made, some progress has been done in \cite{dembo2020everything}.
+
+On the other hand there are many ideas on new areas where this technology can be applied, some of them are very obvious and maybe the reason for Blockchain's existence but some others are new and disruptive like using it in the healthcare sector, virtual voting, supply chains or the creation of smart contracts. Although some of these ideas are good some of them are not. There needs to be a deep understanding of the tool in hand in order to know if it is the best choice for the task. Also, once a Blockchain based protocol has been regarded the best solution for the task(like in the case of smart contracts at the current time) there needs to be a lot of development done for these ideas to see the light.
+
+Last, the need to educate non-expert users on the matter is urgent. Blockchain being such a powerful tool in the elimination of central entities its success is of human interest. In order for this to happen people need to be educated on the Blockchain concept so they understand what it truly is and the potential it actually has over some of their particular uses. As stated in the introduction there is a lot of misunderstandings around the concept of Blockchain. Even in some advanced readings, the terms are confused and mixed. It is the belief of the author that, in order to understand the Blockchain, it has to be fully disconnected from the Bitcoin network and he hopes it this is the case in the near future. It is also believed that this technology has come to stay and it will find its place in one way or another, maybe in a totally unexpected place.
+
+
+\end{document}

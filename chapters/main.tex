@@ -1,0 +1,187 @@
+%%%Typography
+\documentclass [11pt, a4paper, twoside, openright]{book}
+\usepackage[a4paper, total={6in, 8.5in}]{geometry} %Models page geometry
+\usepackage[utf8]{inputenc} %Gives access to UTF-8 characters
+\usepackage[T1]{fontenc} %Encoding with 8-bit characters
+% \usepackage{setspace}
+% \doublespacing
+% \onehalfspacing
+% \usepackage{csquotes}
+\def\faChecked{\FA\symbol{"F00C}}
+
+\makeatletter
+\let\NAT@parse\undefined
+\makeatother
+
+%%%Font
+\usepackage{charter}
+
+%%%Languages
+\usepackage{csquotes}
+%\usepackage[spanish, english]{babel}
+% \usepackage[spanish]{babel}
+%%%Change Title's Language
+% \addto\captionsspanish{% Replace "english" with the language you use
+%   \renewcommand{\contentsname}%
+%     {Índice General}%
+% }
+% \addto\captionsspanish{% Replace "english" with the language you use
+%   \renewcommand{\listfigurename}%
+%     {Índice de Figuras}%
+% }
+% \addto\captionsspanish{% Replace "english" with the language you use
+%   \renewcommand{\listtablename}%
+%     {Índice de Tablas}%
+% }
+
+%%%Subfiles
+\usepackage{subfiles}
+\providecommand{\ip}{./figures} %Every file has its figures in it's directory(ip == image path)
+
+%%%Graphics
+\usepackage{graphicx} %Allows to insert images
+\usepackage{subcaption} %Allows to compose several images
+\usepackage{comment} %Allows to use blocks of comments
+\usepackage{float} %Avoid reposition of pictures and related warnings
+\usepackage{lscape} %Allows to set landscape pages
+\usepackage{pdflscape} %Allows to set landscape pages
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+
+%%%Bibliography
+\usepackage[style=alphabetic]{biblatex} %Allows the usage of a bibliography and cites: numeric, verbose
+\addbibresource{../bibliography/citations.bib}
+\setlength\bibitemsep{2.0\itemsep} %Establishes bibliography item separation
+%\setlength{\bibsep}{0pt plus 0.3ex}
+
+%%%Math
+\usepackage{dsfont} %Math symbols
+\usepackage{amsmath} %Numbering equations, correct spacing around equals signs and other enhancements for mathematical constructs display
+\usepackage{amsthm} %Proof environment
+\usepackage{amssymb} %More mathematical symbols and fonts
+\usepackage{stmaryrd} %St Mary’s Road symbols for derivations and functional programming
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+% \newtheorem{lemma}{Lemma}[theorem]
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{proposition}{Proposition}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\E}{\mathbb{E}}
+
+% \usepackage{enumitem}
+% \usepackage{etoolbox}
+% \AtBeginEnvironment{definition}{{label=\arabic*,font=\upshape}}
+% \newcommand{\todoerror}[2][]{\todo[inline, color=Red, #1]{#2}}
+% \renewcommand{\definition}[1][]{\definition[font=\upshape, #1]}
+
+%%%Pseudocode
+\usepackage{listings} %Allows pseudocodes
+\definecolor{cred}{rgb}{0.6,0,0} % for strings
+\definecolor{cgreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{othergreen}{rgb}{0.0,0.55,0.0} % comments
+\definecolor{cpurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{cblue}{rgb}{0.25,0.35,0.75} % more comments
+\definecolor{corange}{rgb}{1.0,0.75,0.05} % functions
+\definecolor{bcolor}{rgb}{0.97,0.97,0.97} % color de fondo
+\lstset{language=C++,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{cred}\bfseries,
+	%identifierstyle=\color{cpurple},
+	stringstyle=\color{othergreen},
+	commentstyle=\color{cgreen},
+	morecomment=[s][\color{cblue}]{/*}{*/},
+	backgroundcolor=\color{bcolor},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false
+}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\algrenewcommand\textproc{}% Function names not in caps
+
+%%%Tables
+\usepackage{booktabs} %Tables enhancements
+\usepackage{pgfplotstable} %Allows to transform csv files to latex tables
+\pgfplotsset{compat=1.17}
+\usepackage{longtable}
+
+%%%Miscelaneous
+\usepackage{enumerate} %Enhanced enumerate environment
+\usepackage{changepage} %Allows to change paragraph margins
+\usepackage{titlesec} %Uniform titles style
+\usepackage{appendix} %Provides various ways of formatting the titles of appendices
+\usepackage[bottom]{footmisc}	% Forces footcites to be always at the bottom
+\setlength{\skip\footins}{1.5em} % Setting the distance of the text block from the
+%\setlength{\parindent}{0pt} %Indentation removal
+% \setcounter{secnumdepth}{1} %Set toc title numbering to subsubsection
+
+%%%Cover
+\usepackage{eso-pic}
+\usepackage{scrextend}
+\usepackage{setspace}
+\newcommand\BackgroundPic{%
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+      % Indicar la imagen de fondo en el siguiente comando
+			\includegraphics[width=\paperwidth,height=\paperheight,%
+			keepaspectratio]{/figures/cover}%
+			\vfill
+}}}
+
+%%%Todo Notes
+% \usepackage[colorinlistoftodos]{todonotes}
+% \newcommand{\todoerror}[2][]{\todo[inline, color=Red, #1]{#2}}
+% \newcommand{\todoexplain}[2][]{\todo[inline, #1]{#2}}
+% \newcommand{\todorewrite}[2][]{\todo[inline, color=LimeGreen, #1]{#2}}
+% \newcommand{\todoadd}[2][]{\todo[inline, color=Yellow, #1]{#2}}
+
+
+%%%Hyperlinks
+\usepackage[plainpages=false]{hyperref} %Allows the usage of Hyperlinks
+\urlstyle{same}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=magenta,
+	urlcolor=RoyalBlue,
+	citecolor=RoyalBlue
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%
+
+% \includeonly{1-introduction/introduction}
+
+\begin{document}
+	\frontmatter
+	\subfileinclude{frontmatter/frontmatter}
+	% \listoftodos
+
+	\mainmatter
+	\subfileinclude{1-introduction/introduction}
+	\subfileinclude{2-concepts/concepts}
+	\subfileinclude{3-model/model}
+	\subfileinclude{4-protocol/protocol}
+	\subfileinclude{5-properties/properties}
+	\subfileinclude{6-applications/applications}
+	\subfileinclude{7-conclusion/conclusion}
+
+	%\appendix
+	%\subfileinclude{Apendix1/Apendix1}
+
+	\backmatter
+	\subfileinclude{backmatter/backmatter.tex}
+
+\end{document}

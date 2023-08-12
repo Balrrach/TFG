@@ -1,0 +1,88 @@
+\documentclass[..]{subfiles}
+
+
+\begin{document}
+
+\chapter{Introduction}\label{chap:introduction}
+
+\section{Context}
+
+Technology has made a deep impact into everybody's life. Practically, everyone has the need to use a computer for work and lives surrounded by tens if not hundreds of processors with which they interact in one way or another, sometimes not even consciously. These computers are often times connected, creating a computing paradigm never seen before. 
+
+In this context of dependence and massive usage, the main service providers have become powerful players that users need to trust in order to use their sometimes essential services. One such example are banks. Banks have always been central players in the monetary territory that traditionally have been trusted with the responsibility of controlling inflation rate and loans. Their continuous failures have led to think if a less intrusive decentralized system is possible.
+
+Blockchain is a new concept first used in the Bitcoin network described by Satoshi Nakamoto in his paper \cite{nakamoto2008bitcoin}. Nakamoto buried his innovation within his implementation, known to the world as Bitcoin. This caused the resulting excitement to link the theoretical concept with the Bitcoin implementation. However, many definitions of blockchain in widespread are just incorrect. Often times because there is a confusion between specific use cases and implementation with the technology itself. Saeed Elnaj defines Blockchain as follows:
+\begin{displayquote}
+	``Blockchain is a digitized, distributed and secure ledger that guarantees immutable transactions and solves the trust problem when two parties exchange value.''\cite{elnaj2018problems}
+\end{displayquote}
+This definition is misleading since it fuses cryptocurrencies and blockchain.
+
+Valentina Gatteschi provides the following definition:
+\begin{displayquote}
+	``A Blockchain is a public ledger distributed over a network, recording transactions (messages sent from one network node to another) executed among networkparticipants. Before insertion, each transaction is verified by network nodes according to a majority consensus mechanism. Recorded information cannot be changed/erased and, at whatever time, the history of each transaction can be recreated.''\cite{gatteschi2018blockchain}
+\end{displayquote}
+
+First of all, in both cases the blockchain described is the Nakamoto blockchain which embebes data into the blocks contrary to other blockchain like \textit{Keyless Signature Infrastructure} which do not do this. Second, the term distributed is used differently. Saeed Elnaj is describing a network architecture, while Valentina Gatteschi is stating that the Blockchain is distributed across the network independently of the network architecture. A generic Blockchain doesn't need to be distributed over a network. It is true that the distribution helps the computational security of the system but it is not mandatory. 
+
+Saeed Elnaj focuses on the security of the Blockchain. However, Blockchain is a concept, not a security protocol. A Blockchain is only as secure as the technical framework, the supporting infrastructure, and the length of the Blockchain. As a concept there are multiple ways to implement a Blockchain. Some authors as Don and Alex Tapscott describe the security features of the Blockchain as follows:
+\begin{displayquote}
+	``Safety measures are embedded in the network with no single point of failure, and they provide not only confidentiality, but also authenticity and nonrepudiation to all activity.''\cite{radziwill2018blockchain}
+\end{displayquote}
+
+This makes little to no sense since the mentioned security properties are not inherent to the Blockchain, nor to the Bitcoin network. In any case they are \textit{desirable} properties, but that is not what is stated. Also, confidence is talked about. But the confidentiality that is talked about is not the confidentiality of the transactions but the confidentiality of the persons conducting the transaction. This is important since there is historic precedence in which this confidence has been broken. Griffin and Shams describe two of the major heists:
+\begin{displayquote}
+	``Mt. Gox, a leading exchange that by 2013 was handling approximately 70\% of bitcoin volume, declared bankruptcy due to a mysterious ’hack’ of the exchange which resulted in approximately \$450 million worth of bitcoin missing from investors’ accounts. Good reasons have been put forward as to why the ’hack’ may have been an inside job. ...In the second biggest hack in Bitcoin history, on August 2, 2016, the Bitfinex exchange announced that \$72 million had been stolen from investor accounts, leading Bitcoin to plummet 20\% in value.''\cite{griffin}
+\end{displayquote}
+
+Felix Salmon talks about the first Bitcoin heist in 2011:
+\begin{displayquote}
+	``A man -- we know him only as “All In Vain” -- went to bed that night with his Windows computer turned on and connected to the internet. On that computer was a wallet containing 25,000 electronic coins. When he woke up on Monday morning, the wallet was still there. But the money was gone.''
+\end{displayquote}
+
+The "All In Vain" heist demonstrate security properties are not inherent to Blockchain applications and, in fact security problem arise from the fact that Blockchain are usually distributed across a P2P network which can spread worms in a matter of seconds. No technology is inherently secure, Blockchain is no exception.
+
+Blockain is also stated to be inherently \textit{immutable} and is often seen as the solution to every problem that requires such property. Truth is changing history is expensive, sometimes very expensive but never impossible. Again, history backs this fact when the Distributed Autonomous Organization was hacked as Nicholas Weaver tells and the Ethereum development team decided to reverse the heist by creating a fork in the Blockchain to undo the heist. Most Ethereum users approved this decision but not all of them, still, history was rewritten:
+\begin{displayquote}
+	``The first big smart contract, the DAO or Decentralized Autonomous Organization, sought to create a democratic mutual fund where investors could invest their Ethereum [Ether] and then vote on possible investments. Approximately 10\% of all Ethereum ended up in the DAO before someone discovered a reentrancy bug that enabled the attacker to effectively steal all the Ethereum [Ether]. The only reason this bug and theft did not result in global losses is that Ethereum developers released a new version of the system that effectively undid the theft by altering the supposedly immutable Blockchain.''\cite{weaver2018risks}
+\end{displayquote}
+
+The real problem is well stated by Trevor I Kiviat who describes the problem in his writing for the Duke Law Journal:
+\begin{displayquote}
+	``Authors almost exclusively focus on bitcoin as a currency system. For example, authors have weighed the costs and benefits of transacting with virtual currencies, considered the sustainability of virtual currencies, and contemplated the application of existing regulatory schemes to virtual currency. Missing from the dialogue is a deeper perspective on the technology.''
+\end{displayquote}
+
+Although there is a lot of confusion around the Blockchain concept there is no doubt that when used to solve the appropriate problem it is a powerful and disruptive tool. Nevertheless it is necessary to formally define a theoretical model upon which a comprehensive protocol can be fully described and its properties perfectly analyzed. Proceeding this way it will be possible to archive Blockchain's full potential.
+
+
+\section{Objetives}
+
+Now the objectives of the work will be described. An analysis on the achievement of such objectives will be made in Chapter \ref{chap:conclusion}.
+
+
+\subsection{Primary Objective}
+
+The present work strives to present a complete description of a protocol(the Bitcoin protocol) that uses the Blockchain technology under the conditions of a formal computational model and analyze its properties in order to solve some two problems, namely the Byzantine Generals problem and the Public Transaction Ledger problem.
+
+
+\subsection{Secondary Objectives}
+
+\begin{enumerate}
+	\item Studying current state of the art works
+	\item Analyzing the most relevant current works on Blockchain topic from different standpoints
+	\item Exploring the accepted definitions of the Blockchain concept and the consequences of such definitions in terms of models and protocols
+	\item Searching for problems that can be solved using Blockchain properties
+	\item Defining in detail the computational model upon the protocol will be based
+	\item Describing the protocol that will use the Blockchain technology and will be used to solve the stated problems
+	\item Analyzing the vulnerabilities of the described protocol
+	\item Detailing the problems that are going to be solved
+	\item Illustrating the solutions given to the problems
+	\item Implementing the protocol in a general purpose language
+\end{enumerate}
+
+
+\section{Structure}
+
+The project structure is as follows. First a few concepts about distributed systems are presented lightly in Chapter \ref{chap:previous}. Then a formal description of the computation model the protocol will lie on is made in Chapter \ref{chap:model}. In chapter \ref{chap:protocol} a concrete instantiation of the model is described and the complete protocol and its parameters follow. Then, in Chapter \ref{chap:properties} some hypothesis are described as well as the desired properties which will be proved and analyzed in detail. In Chapter \ref{chap:applications} some problems are described and the proven properties of the protocol are used in order to provide solutions for such problems. Last, in Chapter \ref{chap:conclusion}, a meditation on objectives completion is provided.
+
+
+\end{document}

@@ -1,0 +1,93 @@
+\documentclass[..]{subfiles}
+
+
+\begin{document}
+
+\chapter{Previous Concepts}\label{chap:previous}
+
+In distributed systems there is often the need to take local decisions that satisfy global constrains. Such coordinated decision is called \textit{agreement}. If the system is assumed to be perfect(i.e faultless) then reaching agreement is not only posible but often easy to achieve. Under the presence of faults though, the situation changes drastically. In this chapters the communication model will be lightly approach and such problems will be described and cataloged in a similar manner. This chapter is mainly based on \cite{santoro2006design}.
+
+
+\section{Network Synchrony}
+
+Network synchrony is related to the degree of coordination between the different components of the network. It is necessary to fix a level of synchrony before protocol development or analysis. There are three network synchrony conditions:
+
+\begin{itemize}
+	\item \textbf{Synchronous}: Component operations are strongly coordinated. A synchronous network is modeled in rounds. This is often achieved using a centralized clock synchronization system. In any given round all components of the network perform exactly the same operations. For example, in round $r$ all nodes may perform a measurement using a sensor and broadcast it in round $r+1$.
+	\item \textbf{Asynchronous}: Component operations are not coordinated in any way or form. This means component operations are not limited by coordination rules and are executed in an opportunistic manner. As a consequence there is no warranty of message reception since after no reply components have no way to know if it was due to a failure in the message transmission related to the network or the other component was simply busy.
+	\item \textbf{Partially synchronous}: Component operations are not coordinated but there is an upper bound to message transmission delay. As a consequence message delivery is warranted but not in a timely way. Many protocols asume this level of synchronization since it is the most appropriate for networks based on an internet connection.
+\end{itemize}
+
+
+
+\section{Faults and Failures}
+
+No system is perfect. Failures can occur in any system and studying, classifying and modeling such failures is necessary in order to improve the aforementioned systems. A failure or a fault is any behavior that deviates from the expected correct behavior. In distributed systems a failure and its cause may have very different nature. A failure can be caused by a flaw in the system's design, a programming error, a hardware error, an unexpected input... If a protocol is able to keep working in the presence of faults it is said to be \textit{fault-tolerant} which makes it necessarily be more robust and reliable, both desirable properties. Designing \textit{fault-tolerant} protocols can be a hard task due to the unpredictability and diverse nature of the failures. Also, protocol design increases in complexity as the components involved in the system grow. This means that designing protocols for big size networks like the internet is even harder.
+
+\subsection{Properties}
+
+Failures can be grouped in three different categories attending to their cause:
+\begin{itemize}
+	\item \textbf{Execution}: Failures that occur in the execution of the protocol by a system component. Examples: computational errors, execution of the incorrect protocol step.
+	\item \textbf{Transmission}: Failures that occur in the transmission system. Examples:  loss and corruption of messages, message delivery to the wrong component.
+	\item \textbf{Component}: Failures strictly related to a component and not the execution of the specific protocol. Examples: a link going down, a component shutting down.
+\end{itemize}
+The same failure can have different causes, thus can be classified differently according to the previous arrangement. For example; node $n$ attempts to send a message to node $m$. If the message never arrives it could be due to an execution failure like node $n$ failing to execute \texttt{send} operation or any other operation that precedes it in the protocol. It also could be caused by a transmission error like message loss by the transmission system. Finally the fault could be component related like the link between both components being down.
+
+According to their time span failures can be classified in two groups:
+\begin{itemize}
+	\item \textbf{Transient}: A fault that comes and goes out of existence. Transient failures may or may not reoccur. A transient fault that continues to reoccur is called intermittent. A corp that crosses through the beam of a wave transmitter causing a momentary disconnection is an example of a transient failure and a connector's loose contact is an example of an intermittent failure.
+	\item \textbf{Permanent}: A fault that continues to exist until the underlying cause is repaired. Some examples are broken component pieces and software errors.
+\end{itemize}
+
+Attending to geographical spread failures can be classified in two groups:
+\begin{itemize}
+	\item \textbf{Localized}: A fault only shown by a subset of the system components(a priori unknown).
+	\item \textbf{Ubiquitous}: A fault that may be shown by any of the system components.
+\end{itemize}
+
+
+
+\subsection{Failure Models}
+
+Let system properties and fault types be fixed, \textit{resiliency} is defined as the maximum number of failures that can be tolerated by the system. In order to describe different types of failures some models need to be defined. Such models are defined attending to the previously stated failure cause classification. 
+
+Obviously, no protocol is resilient to any amount of failures. For instance, if all system's nodes stop working there is no protocol can be correct. Thus, the goal is to design systems that are able to withstand up to a certain amount of failures of a given type.
+
+It is also important to note that the danger associated with a fault isn't dependant on its severity but rather on its impact on the system's behaviour and its detectability. As an example, a sudden broken server is a severe failure but it doesn't necessarily need to have a big impact on the system since a system with a synchronized server cluster can continue working with a slight impact on performance. On the other hand a tricky software error causing a bank's payment system to make deposits on the wrong account can have devastating effects since it is very hard to detect by nature and has a devastating effect on the system.
+
+
+\subsubsection{Component Failure Models}
+
+In this model the cause of a failure is a component and only components can fail. This model is the most commonly used in classic literature to discuss fault tolerance. Depending on which components fail three categories can be distinguished:
+\begin{itemize}
+	\item \textbf{Entity Failures}: In this model only nodes can be faulty. This doesn't mean some faults not related to nodes can't be described using this model. For example, a link going down can be modelled as one of the nodes failing to execute operations \texttt{send} and \texttt{receive} with regards to the other node.
+	\item \textbf{Link Failures}: In this model only links can be faulty. Similarly to \textit{entity failures}, having only links fail doesn't mean some failures not related to links can't be described. For example, a node crash can be modelled as all its links crashing and a node computing wrong information and sending it to another node can be described as the link corrupting the message.
+
+	\item \textbf{Hybrid Failures}: In this model both nodes and links can be faulty.
+\end{itemize}
+
+The least used model is the \textit{hybrid model} since it is usually too complex due to the amount of failures that can be considered while the most used model is the \textit{entity failures} model. In general, \textit{entity failures} can be divided in three categories:
+\begin{itemize}
+	\item \textbf{Crash}: A faulty node stops working completely, meaning it halts all execution. When a component fails it doesn't perform any other operation and stays off forever. It is important to emphasize that in this model a faulty component doesn't execute any wrong operation like sending corrupted or misleading messages.
+	\item \textbf{Omission}: A faulty node can miss some of the received messages and/or doesn't send some of the prepared messages. In the first case the fault is known as send omission and the second case is known as receive omission. These type of faults are usually caused by memory overflow.
+	\item \textbf{Byzantine Failure}: A faulty node can exhibit any behavior. Software bugs often produce this kind of failures. Also, a faulty node may actually be \textit{malicious} executing operations in an attempt to damage system's behavior and can even be coordinated with other faulty components to cause a greater impact.
+\end{itemize}
+A few observations are worth doing; First, note that \textit{crash} failures are a type of \textit{omission} failure, particularly a permanent send/receive \textit{omission} failure. Second, 
+\textit{byzantine} failures are an extreme kind of failure that includes \textit{omission} failures. Thus, there exists an inclusion order between the three types of failures with \textit{byzantine} failures being the biggest set of the three. As a consequence, a system resilient to \textit{byzantine} failures can tolerate any other failure.
+
+\paragraph{Communication Failure Models}
+
+In this model the cause of a failure is the communication subsystem. The communication subsystem can produce the following failures: message loss, message corruption, message delivery to the wrong component. In the \textit{communication failure} model the communication subsystem is bounded to only three types of faults:
+\begin{itemize}
+	\item \textbf{Omission}: A sent message is never delivered.
+	\item \textbf{Addition}: A message is received although none was sent.
+	\item \textbf{Corruption}: The received message doesn't coincide with the one sent.
+\end{itemize}
+The use of \textit{omission} and \textit{addition} faults in the description of several failures is quiet obvious, not so much the use of the \textit{addition} fault. Several failures need to use \textit{addition} error to be correctly described. For example, noise in the communication channel could be confused with a message. Even more important is its use in modelling "non-authorised" messages which are messages sent by a not-authorised user. Spam is a clear example of this phenomenon.
+
+There is no clear hierarchy regarding the danger associated with these failures. The hierarchy comes naturally when two or all of these faults can occur in the system at the same time. When all faults occur at the same time such behavior is called a \textit{Byzantine} failure.
+
+
+\end{document}
+
